@@ -45,18 +45,29 @@ public class FXMLDocumentController implements Initializable {
 
     private void loginbutton(ActionEvent event) throws IOException {
         
-         Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
-        
-        
-        
-        
-        Scene scene = new Scene(root);
-        Stage stage= new Stage();
-        stage.setScene(scene);
-        stage.show();
-        stage.setTitle("Profile");
+//         Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
+//       
+//        Scene scene = new Scene(root);
+//        Stage stage= new Stage();
+//        stage.setScene(scene);
+//        stage.show();
+//        stage.setTitle("Profile");
+
+FXMLLoader loader = new FXMLLoader(getClass().getResource("profile.fxml"));
+            Parent root = loader.load();
+
+            // Pass data to the ListController
+//            FXMLProfileController profileController = loader.getController();
+//            profileController.setValues(values);
+
+            // Switch the scene
+            Stage stage = (Stage) email.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("profile");
         
     }
+
+
 
     
 }
