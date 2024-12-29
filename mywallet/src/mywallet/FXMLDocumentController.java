@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXML2.java to edit this template
  */
-package magic.wallet;
+package mywallet;
 
 import java.io.IOException;
 import java.net.URL;
@@ -13,9 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -25,12 +23,7 @@ import javafx.stage.Stage;
  */
 public class FXMLDocumentController implements Initializable {
     
-    @FXML
     private Label label;
-    @FXML
-    private TextField email;
-    @FXML
-    private PasswordField pass;
     
     private void handleButtonAction(ActionEvent event) {
         System.out.println("You clicked me!");
@@ -42,32 +35,32 @@ public class FXMLDocumentController implements Initializable {
         // TODO
     }    
 
-
-    private void loginbutton(ActionEvent event) throws IOException {
+    @FXML
+    private void singin(ActionEvent event) {
         
-//         Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
-//       
-//        Scene scene = new Scene(root);
-//        Stage stage= new Stage();
-//        stage.setScene(scene);
-//        stage.show();
-//        stage.setTitle("Profile");
-
-FXMLLoader loader = new FXMLLoader(getClass().getResource("profile.fxml"));
-            Parent root = loader.load();
-
-            // Pass data to the ListController
-//            FXMLProfileController profileController = loader.getController();
-//            profileController.setValues(values);
-
-            // Switch the scene
-            Stage stage = (Stage) email.getScene().getWindow();
+        try {
+            // Load the signin.fxml file
+            Parent root = FXMLLoader.load(getClass().getResource("signin.fxml"));
+            Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
-            stage.setTitle("profile");
-        
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-
-
-
     
+
+    @FXML
+    private void login(ActionEvent event) {
+        
+     try {
+            // Load the login.fxml file
+            Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
+            Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

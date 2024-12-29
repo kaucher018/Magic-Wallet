@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="579.0" prefWidth="945.0" style="-fx-background-color: #ffb400;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mywallet.SigninController">
+    <children>
+      <AnchorPane layoutY="28.0" prefHeight="59.0" prefWidth="951.0" style="-fx-background-color: #ff9200;">
+         <children>
+            <ImageView fitHeight="59.0" fitWidth="78.0" layoutX="27.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/Picsart_24-12-23_20-21-35-061.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="41.0" fitWidth="207.0" layoutX="93.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/Picsart_24-12-23_20-49-32-030.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="773.0" layoutY="21.0" mnemonicParsing="false" onAction="#login" style="-fx-background-color: #ff7500;" text="Log In" textFill="WHITE" />
+            <Button layoutX="853.0" layoutY="21.0" mnemonicParsing="false" style="-fx-background-color: #ff7500;" text="About Us" textFill="#fffbfb" />
+         </children>
+      </AnchorPane>
+      <ImageView fitHeight="449.0" fitWidth="458.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@image/1000012914.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="656.0" layoutY="420.0" mnemonicParsing="false" onAction="#singup" style="-fx-background-color: #ff7500;" text="Sing Up" textFill="WHITE" />
+      <TextField fx:id="email" layoutX="534.0" layoutY="237.0" prefHeight="25.0" prefWidth="338.0" promptText="Enter your email address" />
+      <TextField layoutX="534.0" layoutY="294.0" prefHeight="25.0" prefWidth="338.0" promptText="set a password" />
+      <TextField layoutX="534.0" layoutY="355.0" prefHeight="25.0" prefWidth="338.0" promptText="confrim password" />
+      <Label layoutX="535.0" layoutY="220.0" text="Email :" />
+      <Label layoutX="535.0" layoutY="277.0" text="Password :" />
+      <Label layoutX="535.0" layoutY="338.0" text="Confirm password :" />
+      <Label layoutX="534.0" layoutY="171.0" prefHeight="41.0" prefWidth="151.0" text="SING UP HERE :">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+    </children>
+   <effect>
+      <DropShadow />
+   </effect>
+</AnchorPane>
