@@ -32,10 +32,10 @@
             <Image url="@image/1000012914.png" />
          </image>
       </ImageView>
-      <Button layoutX="656.0" layoutY="420.0" mnemonicParsing="false" onAction="#singup" style="-fx-background-color: #ff7500;" text="Sing Up" textFill="WHITE" />
+      <Button fx:id="singupbtn" layoutX="656.0" layoutY="420.0" mnemonicParsing="false" onAction="#singup" style="-fx-background-color: #ff7500;" text="Sing Up" textFill="WHITE" />
       <TextField fx:id="email" layoutX="534.0" layoutY="237.0" prefHeight="25.0" prefWidth="338.0" promptText="Enter your email address" />
-      <TextField layoutX="534.0" layoutY="294.0" prefHeight="25.0" prefWidth="338.0" promptText="set a password" />
-      <TextField layoutX="534.0" layoutY="355.0" prefHeight="25.0" prefWidth="338.0" promptText="confrim password" />
+      <TextField fx:id="password" layoutX="534.0" layoutY="294.0" prefHeight="25.0" prefWidth="338.0" promptText="set a password" />
+      <TextField fx:id="confrimpassword" layoutX="534.0" layoutY="355.0" prefHeight="25.0" prefWidth="338.0" promptText="confrim password" />
       <Label layoutX="535.0" layoutY="220.0" text="Email :" />
       <Label layoutX="535.0" layoutY="277.0" text="Password :" />
       <Label layoutX="535.0" layoutY="338.0" text="Confirm password :" />
@@ -44,6 +44,7 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
+      <Label fx:id="label" layoutX="620.0" layoutY="122.0" text="Email :" />
     </children>
    <effect>
       <DropShadow />
