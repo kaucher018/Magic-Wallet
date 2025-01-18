@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="579.0" prefWidth="945.0" style="-fx-background-color: #ffb400;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mywallet.SigninController">
+<AnchorPane id="AnchorPane" prefHeight="579.0" prefWidth="945.0" style="-fx-background-color: #ffb400;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mywallet.signinController">
     <children>
       <AnchorPane layoutY="28.0" prefHeight="59.0" prefWidth="951.0" style="-fx-background-color: #ff9200;">
          <children>
@@ -44,7 +44,6 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="label" layoutX="620.0" layoutY="122.0" text="Email :" />
     </children>
    <effect>
       <DropShadow />

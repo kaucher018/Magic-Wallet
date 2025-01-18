@@ -13,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -21,10 +22,16 @@ import javafx.stage.Stage;
  *
  * @author User
  */
-public class SigninController implements Initializable {
+public class signinController implements Initializable {
 
     @FXML
     private TextField email;
+    @FXML
+    private Button singupbtn;
+    @FXML
+    private TextField password;
+    @FXML
+    private TextField confrimpassword;
 
     /**
      * Initializes the controller class.
