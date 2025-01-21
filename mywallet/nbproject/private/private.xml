@@ -3,13 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/User/Documents/GitHub/Magic-Wallet/mywallet/src/mywallet/UserprofileController.java</file>
-            <file>file:/C:/Users/User/Documents/GitHub/Magic-Wallet/mywallet/src/mywallet/signin.fxml</file>
-            <file>file:/C:/Users/User/Documents/GitHub/Magic-Wallet/mywallet/src/mywallet/Mywallet.java</file>
-            <file>file:/C:/Users/User/Documents/GitHub/Magic-Wallet/mywallet/src/mywallet/LoginController.java</file>
-            <file>file:/C:/Users/User/Documents/GitHub/Magic-Wallet/mywallet/src/mywallet/login.fxml</file>
-            <file>file:/C:/Users/User/Documents/GitHub/Magic-Wallet/mywallet/src/mywallet/signinController.java</file>
-            <file>file:/C:/Users/User/Documents/GitHub/Magic-Wallet/mywallet/src/DatabaseInitializer.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/mywallet/src/mywallet/LoginController.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/mywallet/src/mywallet/FXMLDocument.fxml</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/mywallet/src/mywallet/UserprofileController.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/mywallet/src/mywallet/FXMLDocumentController.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/mywallet/src/mywallet/image/Picsart_24-12-23_20-21-35-061.png</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/mywallet/src/mywallet/userprofile.fxml</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/mywallet/src/mywallet/signin.fxml</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/mywallet/src/mywallet/login.fxml</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/mywallet/src/mywallet/DatabaseHelper.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/mywallet/src/mywallet/CreateDatabase.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/mywallet/src/mywallet/signinController.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/mywallet/src/mywallet/image/wallet.png</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/mywallet/src/mywallet/image/Picsart_24-12-23_20-49-32-030.png</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/mywallet/src/mywallet/image/1000015042_1.png</file>
         </group>
     </open-files>
 </project-private>

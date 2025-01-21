@@ -4,44 +4,82 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="579.0" prefWidth="945.0" style="-fx-background-color: #ffb400;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mywallet.signinController">
+<AnchorPane id="AnchorPane" prefHeight="579.0" prefWidth="888.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mywallet.signinController">
     <children>
-      <AnchorPane layoutY="28.0" prefHeight="59.0" prefWidth="951.0" style="-fx-background-color: #ff9200;">
-         <children>
-            <ImageView fitHeight="59.0" fitWidth="78.0" layoutX="27.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@image/Picsart_24-12-23_20-21-35-061.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="41.0" fitWidth="207.0" layoutX="93.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@image/Picsart_24-12-23_20-49-32-030.png" />
-               </image>
-            </ImageView>
-            <Button layoutX="773.0" layoutY="21.0" mnemonicParsing="false" onAction="#login" style="-fx-background-color: #ff7500;" text="Log In" textFill="WHITE" />
-            <Button layoutX="853.0" layoutY="21.0" mnemonicParsing="false" style="-fx-background-color: #ff7500;" text="About Us" textFill="#fffbfb" />
-         </children>
-      </AnchorPane>
-      <ImageView fitHeight="449.0" fitWidth="458.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="447.0" fitWidth="448.0" layoutX="412.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@image/1000012914.png" />
          </image>
       </ImageView>
-      <Button fx:id="singupbtn" layoutX="656.0" layoutY="420.0" mnemonicParsing="false" onAction="#singup" style="-fx-background-color: #ff7500;" text="Sing Up" textFill="WHITE" />
-      <TextField fx:id="email" layoutX="534.0" layoutY="237.0" prefHeight="25.0" prefWidth="338.0" promptText="Enter your email address" />
-      <TextField fx:id="password" layoutX="534.0" layoutY="294.0" prefHeight="25.0" prefWidth="338.0" promptText="set a password" />
-      <TextField fx:id="confrimpassword" layoutX="534.0" layoutY="355.0" prefHeight="25.0" prefWidth="338.0" promptText="confrim password" />
-      <Label layoutX="535.0" layoutY="220.0" text="Email :" />
-      <Label layoutX="535.0" layoutY="277.0" text="Password :" />
-      <Label layoutX="535.0" layoutY="338.0" text="Confirm password :" />
-      <Label layoutX="534.0" layoutY="171.0" prefHeight="41.0" prefWidth="151.0" text="SING UP HERE :">
+      <Button layoutX="598.0" layoutY="479.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: #ff0000; -fx-border-radius: 30;" text="About Us" textFill="RED">
          <font>
-            <Font name="System Bold" size="14.0" />
+            <Font name="System Bold Italic" size="13.0" />
+         </font></Button>
+      <ImageView fitHeight="96.0" fitWidth="371.0" layoutX="469.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@image/Picsart_24-12-23_20-49-32-030.png" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="11.0" layoutY="11.0" prefHeight="555.0" prefWidth="360.0">
+         <children>
+            <ImageView fitHeight="555.0" fitWidth="409.0" opacity="0.28" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/1000015042_1.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="singupbtn" layoutX="151.0" layoutY="340.0" mnemonicParsing="false" onAction="#singup" style="-fx-background-color: transparent; -fx-border-color: #ff0000; -fx-border-radius: 30;" text="Sing Up" textFill="RED">
+               <effect>
+                  <Glow />
+               </effect>
+               <font>
+                  <Font name="System Bold Italic" size="13.0" />
+               </font></Button>
+            <TextField fx:id="email" alignment="CENTER" layoutX="37.0" layoutY="152.0" prefHeight="41.0" prefWidth="312.0" promptText="Enter your email address" style="-fx-background-color: transparent; -fx-border-radius: 20; -fx-border-color: #ff0000;">
+               <effect>
+                  <Glow level="0.58" />
+               </effect>
+            </TextField>
+            <TextField fx:id="password" alignment="CENTER" layoutX="37.0" layoutY="213.0" prefHeight="41.0" prefWidth="312.0" promptText="set a password" style="-fx-background-color: transparent; -fx-border-radius: 20; -fx-border-color: #ff0000;">
+               <effect>
+                  <Glow level="0.52" />
+               </effect>
+            </TextField>
+            <TextField fx:id="confrimpassword" alignment="CENTER" layoutX="37.0" layoutY="273.0" prefHeight="41.0" prefWidth="312.0" promptText="confrim password" style="-fx-background-color: transparent; -fx-border-color: #ff0000; -fx-border-radius: 20;">
+               <effect>
+                  <Glow level="0.57" />
+               </effect>
+            </TextField>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="51.0" layoutY="143.0" prefHeight="19.0" prefWidth="66.0" style="-fx-background-color: #e4b6b6; -fx-background-radius: 35; -fx-border-radius: 35; -fx-border-color: #ff0000;" text="Email :" />
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="51.0" layoutY="204.0" prefHeight="19.0" prefWidth="75.0" style="-fx-background-color: #e4b6b6; -fx-border-radius: 35; -fx-background-radius: 35; -fx-border-color: #ff0000;" text="Password :" />
+            <Label alignment="CENTER" layoutX="51.0" layoutY="264.0" prefHeight="19.0" prefWidth="117.0" style="-fx-background-color: #e4b6b6; -fx-background-radius: 35; -fx-border-color: #ff0000; -fx-border-radius: 35;" text="Confirm password :" />
+            <Label layoutX="122.0" layoutY="76.0" prefHeight="41.0" prefWidth="128.0" text="SING IN HERE ">
+               <font>
+                  <Font name="System Bold Italic" size="18.0" />
+               </font>
+            </Label>
+            <Button layoutX="30.0" layoutY="430.0" mnemonicParsing="false" onAction="#login" prefHeight="27.0" prefWidth="312.0" style="-fx-background-color: red; -fx-border-radius: 30; -fx-border-color: #ff0000;" text="Log In">
+               <font>
+                  <Font name="Arial Bold Italic" size="13.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect></Button>
+            <Label layoutX="84.0" layoutY="395.0" text="You already have an account please">
+               <font>
+                  <Font name="System Bold Italic" size="13.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Label layoutX="549.0" layoutY="144.0" prefHeight="17.0" prefWidth="212.0" text="A Magical way to handle your money" textFill="#c60000">
+         <font>
+            <Font name="System Bold Italic" size="11.0" />
          </font>
       </Label>
     </children>

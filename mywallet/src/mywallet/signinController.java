@@ -1,49 +1,70 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package mywallet;
 
+import java.awt.Image;
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-/**
- * FXML Controller class
- *
- * @author User
- */
-public class signinController implements Initializable {
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import javafx.scene.Parent;
+import javafx.scene.control.Button;
 
+public class signinController {
     @FXML
     private TextField email;
-    @FXML
-    private Button singupbtn;
     @FXML
     private TextField password;
     @FXML
     private TextField confrimpassword;
+    @FXML
+    private Button singupbtn;
 
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+    @FXML
+    private void singup(ActionEvent event) {
+        if (!password.getText().equals(confrimpassword.getText())) {
+            showAlert("Sign Up Failed", "Passwords do not match.");
+            return;
+        }
+
+        try (Connection conn = DatabaseHelper.getConnection()) {
+            String query = "INSERT INTO users (email, password) VALUES (?, ?)";
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, email.getText());
+            stmt.setString(2, password.getText());
+            stmt.executeUpdate();
+             showAlert2("Sign Up Successfull", "Sign Up Successfull,Now you can login!.");
+
+            Stage stage = (Stage) email.getScene().getWindow();
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("login.fxml"))));
+        } catch (Exception e) {
+            showAlert("Sign Up Failed", "Email already exists.");
+        }
+    }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setContentText(message);
+        alert.show();
+    }
+    private void showAlert2(String title, String message) {
+    Alert alert = new Alert(Alert.AlertType.INFORMATION); // Change to INFORMATION
+    alert.setTitle(title);
+    alert.setContentText(message);
+    alert.show();
+}
+
+
 
     @FXML
     private void login(ActionEvent event) {
-          try {
+               try {
             // Load the login.fxml file
             Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
             Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
@@ -53,11 +74,5 @@ public class signinController implements Initializable {
             e.printStackTrace();
         }
     }
-
-    
-
-    @FXML
-    private void singup(ActionEvent event) {
     }
-    
-}
+
