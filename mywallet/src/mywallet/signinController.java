@@ -54,7 +54,7 @@ public class signinController {
         alert.show();
     }
     private void showAlert2(String title, String message) {
-    Alert alert = new Alert(Alert.AlertType.INFORMATION); // Change to INFORMATION
+    Alert alert = new Alert(Alert.AlertType.INFORMATION); 
     alert.setTitle(title);
     alert.setContentText(message);
     alert.show();
