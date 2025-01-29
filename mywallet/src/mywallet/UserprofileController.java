@@ -4,16 +4,21 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextInputDialog;
 import javafx.stage.Stage;
+import java.util.Optional;
+import javafx.event.ActionEvent;
+import javafx.scene.control.ChoiceDialog;
 
 public class UserprofileController {
     private int userId;
@@ -33,6 +38,14 @@ public class UserprofileController {
     private Button out;
     @FXML
     private Button add;
+    @FXML
+    private Button viewTransactions;
+    @FXML
+    private Button setLimit;
+    @FXML
+    private Button addBeneficiary;
+    @FXML
+    private Button viewBeneficiaries;
 
     public void initializeUser(int id, String email, double balance) {
         userId = id;
@@ -62,7 +75,6 @@ public class UserprofileController {
             int rowsAffected = stmt.executeUpdate();
 
             if (rowsAffected > 0) {
-                // Update balance on UI
                 currentbalance.setText(String.valueOf(Double.parseDouble(currentbalance.getText()) + amount));
                 showAlert("Success", "Money added successfully.");
             } else {
@@ -91,6 +103,20 @@ public class UserprofileController {
                 return;
             }
 
+            // Check daily spending limit
+            String limitQuery = "SELECT daily_limit FROM spending_limits WHERE user_id = ?";
+            PreparedStatement limitStmt = conn.prepareStatement(limitQuery);
+            limitStmt.setInt(1, userId);
+            ResultSet limitRs = limitStmt.executeQuery();
+
+            if (limitRs.next()) {
+                double dailyLimit = limitRs.getDouble("daily_limit");
+                if (amount > dailyLimit) {
+                    showAlert("Error", "Transaction failed: Amount exceeds your daily limit.");
+                    return;
+                }
+            }
+
             // Check if recipient exists
             String checkRecipientQuery = "SELECT id FROM users WHERE email = ?";
             PreparedStatement checkRecipientStmt = conn.prepareStatement(checkRecipientQuery);
@@ -116,7 +142,14 @@ public class UserprofileController {
                     addStmt.setInt(2, recipientId);
                     addStmt.executeUpdate();
 
-                    // Update sender's balance on UI
+                    // Save transaction record
+                    String transactionQuery = "INSERT INTO transactions (user_id, amount, transaction_id) VALUES (?, ?, ?)";
+                    PreparedStatement transactionStmt = conn.prepareStatement(transactionQuery);
+                    transactionStmt.setInt(1, userId);
+                    transactionStmt.setDouble(2, amount);
+                    transactionStmt.setString(3, transactionId);
+                    transactionStmt.executeUpdate();
+
                     currentbalance.setText(String.valueOf(Double.parseDouble(currentbalance.getText()) - amount));
                     showAlert("Success", "Money sent successfully.");
                 } else {
@@ -132,41 +165,142 @@ public class UserprofileController {
         }
     }
 
-   @FXML
-private void logout() {
-    try {
-        // Close the current stage (user profile window)
-        userid.getScene().getWindow().hide();
+    @FXML
+    private void viewTransactionHistory() {
+        try (Connection conn = DatabaseHelper.getConnection()) {
+            String query = "SELECT transaction_id, amount FROM transactions WHERE user_id = ?";
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setInt(1, userId);
+            ResultSet rs = stmt.executeQuery();
 
-        // Close the database connection (call the closeConnection method from DatabaseHelper)
-        DatabaseHelper.closeConnection(DatabaseHelper.getConnection());
+            StringBuilder sb = new StringBuilder("Transaction History:\n");
+            while (rs.next()) {
+                sb.append("Transaction ID: ").append(rs.getString("transaction_id"))
+                        .append("|| Amount: ").append(rs.getDouble("amount")).append("\n");
+            }
 
-        // Load the login screen
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml")); // Make sure Login.fxml is correct
-        Parent root = loader.load();
-
-        // Create a new stage for the login screen
-        Stage stage = new Stage();
-        stage.setTitle("MyWallet - Login");
-        stage.setScene(new Scene(root));
-        stage.show();
-
-    } catch (Exception e) {
-        showAlert("Error", "An error occurred while logging out: " + e.getMessage());
+            showAlert("Transaction History", sb.toString());
+        } catch (SQLException e) {
+            showAlert("Error", "Failed to load transactions: " + e.getMessage());
+        }
     }
-}
-
-private void showAlert(String title, String message) {
-    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-    alert.setTitle(title);
-    alert.setContentText(message);
-    alert.show();
-}
-
-
-
-
-    }
-
     
-  
+
+    @FXML
+    private void setSpendingLimit() {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Set Spending Limit");
+        dialog.setHeaderText("Enter your daily spending limit:");
+        Optional<String> result = dialog.showAndWait();
+
+        result.ifPresent(input -> {
+            try (Connection conn = DatabaseHelper.getConnection()) {
+                double limit = Double.parseDouble(input);
+                if (limit <= 0) {
+                    showAlert("Error", "Spending limit must be greater than 0.");
+                    return;
+                }
+
+                String query = "INSERT INTO spending_limits (user_id, daily_limit) VALUES (?, ?) " +
+                               "ON CONFLICT(user_id) DO UPDATE SET daily_limit = ?";
+                PreparedStatement stmt = conn.prepareStatement(query);
+                stmt.setInt(1, userId);
+                stmt.setDouble(2, limit);
+                stmt.setDouble(3, limit);
+                stmt.executeUpdate();
+
+                showAlert("Success", "Spending limit set successfully.");
+            } catch (SQLException | NumberFormatException e) {
+                showAlert("Error", "Invalid input: " + e.getMessage());
+            }
+        });
+    }
+
+    @FXML
+    private void logout() {
+        try {
+            userid.getScene().getWindow().hide();
+            DatabaseHelper.closeConnection(DatabaseHelper.getConnection());
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setTitle("MyWallet - Login");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (Exception e) {
+            showAlert("Error", "An error occurred while logging out: " + e.getMessage());
+        }
+    }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setContentText(message);
+        alert.show();
+    }
+
+    @FXML
+    private void addBeneficiary(ActionEvent event) {
+         TextInputDialog dialog = new TextInputDialog();
+    dialog.setTitle("Add Beneficiary");
+    dialog.setHeaderText("Enter Beneficiary Email:");
+    Optional<String> result = dialog.showAndWait();
+
+    result.ifPresent(email -> {
+        try (Connection conn = DatabaseHelper.getConnection()) {
+            String query = "INSERT INTO beneficiaries (user_id, beneficiary_email) VALUES (?, ?)";
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setInt(1, userId);
+            stmt.setString(2, email);
+            stmt.executeUpdate();
+
+            showAlert("Success", "Beneficiary added successfully.");
+        } catch (SQLException e) {
+            showAlert("Error", "Could not add beneficiary: " + e.getMessage());
+        }
+    });
+    }
+   @FXML
+private void viewBeneficiaries() {
+    try (Connection conn = DatabaseHelper.getConnection()) {
+        if (conn == null) {
+            showAlert("Error", "Database connection failed.");
+            return;
+        }
+
+        // Fetch all beneficiaries for the logged-in user
+        String query = "SELECT beneficiary_email FROM beneficiaries WHERE user_id = ?";
+        PreparedStatement stmt = conn.prepareStatement(query);
+        stmt.setInt(1, userId);
+        ResultSet rs = stmt.executeQuery();
+
+        // Store beneficiaries in a list
+        List<String> beneficiaryList = new ArrayList<>();
+        while (rs.next()) {
+            beneficiaryList.add(rs.getString("beneficiary_email"));
+        }
+
+        if (beneficiaryList.isEmpty()) {
+            showAlert("No Beneficiaries", "You have no saved beneficiaries.");
+            return;
+        }
+
+        // Show a choice dialog for selection
+        ChoiceDialog<String> dialog = new ChoiceDialog<>(beneficiaryList.get(0), beneficiaryList);
+        dialog.setTitle("Select Beneficiary");
+        dialog.setHeaderText("Choose a beneficiary to send money:");
+        dialog.setContentText("Select a beneficiary:");
+
+        Optional<String> result = dialog.showAndWait();
+
+        // If user selects a beneficiary, set it in the transaction account field
+        result.ifPresent(selectedBeneficiary -> transnum.setText(selectedBeneficiary));
+
+    } catch (SQLException e) {
+        showAlert("Error", "Failed to retrieve beneficiaries: " + e.getMessage());
+    }
+}
+
+
+}

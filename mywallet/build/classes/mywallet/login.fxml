@@ -13,40 +13,20 @@
 
 <AnchorPane id="AnchorPane" prefHeight="579.0" prefWidth="888.0" style="-fx-background-color: #ffb40;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mywallet.LoginController">
     <children>
-      <ImageView fitHeight="446.0" fitWidth="443.0" layoutX="13.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@image/1000012914.png" />
-         </image>
-      </ImageView>
-      <Button layoutX="204.0" layoutY="467.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-radius: 30; -fx-border-color: #ff0000;" text="About Us" textFill="RED">
-         <effect>
-            <DropShadow />
-         </effect>
-      </Button>
-      <ImageView fitHeight="93.0" fitWidth="373.0" layoutX="59.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@image/Picsart_24-12-23_20-49-32-030.png" />
-         </image>
-      </ImageView>
-      <AnchorPane layoutX="506.0" layoutY="10.0" prefHeight="563.0" prefWidth="370.0">
+      <AnchorPane layoutX="12.0" layoutY="10.0" prefHeight="563.0" prefWidth="868.0">
          <children>
-            <ImageView fitHeight="563.0" fitWidth="373.0" layoutX="-3.0" opacity="0.27" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@image/1000015042_1.png" />
-               </image>
-            </ImageView>
-            <TextField fx:id="pass" alignment="CENTER" layoutX="27.0" layoutY="283.0" prefHeight="41.0" prefWidth="319.0" promptText="Enter password" style="-fx-border-color: #ff0000; -fx-border-radius: 20; -fx-background-color: transparent;">
+            <TextField fx:id="pass" alignment="CENTER" layoutX="257.0" layoutY="282.0" prefHeight="41.0" prefWidth="319.0" promptText="Enter password" style="-fx-border-color: #ff0000; -fx-border-radius: 20; -fx-background-color: transparent;">
                <effect>
                   <Glow level="0.64" />
                </effect>
             </TextField>
-            <Label alignment="CENTER" layoutX="50.0" layoutY="274.0" prefHeight="19.0" prefWidth="74.0" style="-fx-background-color: #e4b6b6; -fx-background-radius: 35; -fx-border-radius: 35; -fx-border-color: #ff0000;" text="Password :" />
-            <Label layoutX="128.0" layoutY="111.0" prefHeight="41.0" prefWidth="118.0" text="LOGIN HERE ">
+            <Label alignment="CENTER" layoutX="278.0" layoutY="272.0" prefHeight="19.0" prefWidth="74.0" style="-fx-background-color: #e4b6b6; -fx-background-radius: 35; -fx-border-radius: 35; -fx-border-color: #ff0000;" text="Password :" />
+            <Label layoutX="347.0" layoutY="121.0" prefHeight="41.0" prefWidth="118.0" text="LOGIN HERE ">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Button layoutX="161.0" layoutY="342.0" mnemonicParsing="false" onAction="#login" style="-fx-background-color: trasparent; -fx-border-radius: 30; -fx-border-color: #ff0000;" text="Log In" textFill="RED">
+            <Button layoutX="377.0" layoutY="337.0" mnemonicParsing="false" onAction="#login" style="-fx-background-color: trasparent; -fx-border-radius: 30; -fx-border-color: #ff0000;" text="Log In" textFill="RED">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -54,7 +34,7 @@
                   <Font name="System Bold Italic" size="13.0" />
                </font>
             </Button>
-            <Button layoutX="27.0" layoutY="428.0" mnemonicParsing="false" onAction="#singup" prefHeight="27.0" prefWidth="319.0" style="-fx-background-color: red; -fx-border-radius: 20; -fx-border-color: #ff0000;" text="Sing Up" textFill="#222222">
+            <Button layoutX="263.0" layoutY="436.0" mnemonicParsing="false" onAction="#singup" prefHeight="27.0" prefWidth="319.0" style="-fx-background-color: red; -fx-border-radius: 20; -fx-border-color: #ff0000;" text="Sing Up" textFill="#222222">
                <effect>
                   <DropShadow />
                </effect>
@@ -65,24 +45,24 @@
                   <Font name="Arial Bold Italic" size="14.0" />
                </font>
             </Button>
-            <TextField fx:id="email" alignment="CENTER" layoutX="27.0" layoutY="214.0" prefHeight="41.0" prefWidth="319.0" promptText="Enter your email address" style="-fx-background-color: transparent; -fx-border-radius: 20; -fx-border-color: #ff0000;">
+            <TextField fx:id="email" alignment="CENTER" layoutX="258.0" layoutY="219.0" prefHeight="41.0" prefWidth="319.0" promptText="Enter your email address" style="-fx-background-color: transparent; -fx-border-radius: 20; -fx-border-color: #ff0000;">
                <effect>
                   <Glow level="0.55" />
                </effect>
             </TextField>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="50.0" layoutY="204.0" prefHeight="19.0" prefWidth="52.0" style="-fx-background-color: #e4b6b6; -fx-background-radius: 35; -fx-border-color: #ff0000; -fx-border-radius: 35;" text="Email :" />
-            <Label layoutX="98.0" layoutY="400.0" text="--OR,Don't have any account?--">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="278.0" layoutY="210.0" prefHeight="19.0" prefWidth="52.0" style="-fx-background-color: #e4b6b6; -fx-background-radius: 35; -fx-border-color: #ff0000; -fx-border-radius: 35;" text="Email :" />
+            <Label layoutX="328.0" layoutY="388.0" text="--OR,Don't have any account?--">
                <font>
                   <Font name="System Bold Italic" size="12.0" />
                </font>
             </Label>
+            <ImageView fitHeight="89.0" fitWidth="348.0" layoutX="234.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/Picsart_24-12-23_20-49-32-030.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
-      <Label layoutX="142.0" layoutY="146.0" text="A Magical way to handle your money" textFill="#c60000">
-         <font>
-            <Font name="System Bold Italic" size="11.0" />
-         </font>
-      </Label>
     </children>
    <effect>
       <DropShadow />
